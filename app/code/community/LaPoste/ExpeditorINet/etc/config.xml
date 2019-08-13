@@ -13,7 +13,7 @@
 <config>
     <modules>
         <LaPoste_ExpeditorINet>
-            <version>1.0.7</version>
+            <version>1.0.8</version>
             <depends>
                 <Mage_Sales />
                 <Mage_Adminhtml />
@@ -43,13 +43,13 @@
 
     <admin>
         <routers>
-            <expeditorinet>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>LaPoste_ExpeditorINet</module>
-                    <frontName>expeditorinet</frontName>
+                    <modules>
+                        <expeditorinet after="Mage_Adminhtml">LaPoste_ExpeditorINet_Adminhtml</expeditorinet>
+                    </modules>
                 </args>
-            </expeditorinet>
+            </adminhtml>
         </routers>
     </admin>
 

@@ -14,18 +14,18 @@
     <menu>
          <sales>
              <children>
-                <expeditorinet translate="title"> <!-- TODO faire marcher : module="expeditor_inet" (aussi dans les children) -->
+                <expeditorinet translate="title" module="expeditorinet">
                     <title>La Poste Expeditor INet</title>
                     <sort_order>15</sort_order>
                     <children>
                         <export translate="title">
                             <title>Export orders</title>
-                            <action>expeditorinet/export</action>
+                            <action>adminhtml/expeditorinet_export</action>
                             <sort_order>10</sort_order>
                         </export>
                         <import translate="title">
                             <title>Import shipping</title>
-                            <action>expeditorinet/import</action>
+                            <action>adminhtml/expeditorinet_import</action>
                             <sort_order>20</sort_order>
                         </import>
                     </children>
@@ -39,7 +39,7 @@
                 <children>
                     <sales>
                         <children>
-                            <expeditorinet translate="title">
+                            <expeditorinet translate="title" module="expeditorinet">
                                 <title>La Poste Expeditor INet</title>
                                 <children>
                                     <export translate="title">

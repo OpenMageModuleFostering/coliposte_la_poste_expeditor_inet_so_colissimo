@@ -8,7 +8,7 @@
  * @author 	    Smile (http://www.smile.fr) & Jibé
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class LaPoste_ExpeditorINet_ExportController extends Mage_Adminhtml_Controller_Action
+class LaPoste_ExpeditorINet_Adminhtml_ExportController extends Mage_Adminhtml_Controller_Action
 {
     /**
      * Constructor
