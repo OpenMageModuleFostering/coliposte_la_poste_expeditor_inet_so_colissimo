@@ -33,7 +33,11 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
     {
         if (version_compare(Mage::getVersion(), '1.4', '>=')) {
             $collection = Mage::getResourceModel('sales/order_grid_collection')
-                 ->join('order', 'main_table.entity_id = order.entity_id', array('shipping_method'));
+                ->join(
+                    array('orders' => 'order'),
+                    'main_table.entity_id = orders.entity_id',
+                    array('carrier_code' => 'shipping_method')
+                );
         } else {
             $collection = Mage::getResourceModel('sales/order_collection')
                 ->addAttributeToSelect(array('status', 'shipping_method'))
@@ -125,12 +129,22 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
         }
         $this->addColumn('base_grand_total', $columnData);
 
-        $this->addColumn(
-            'carrier', array(
-                'header' => Mage::helper('sales')->__('Carrier'),
-                'index' => 'shipping_method',
-            )
-        );
+        if (version_compare(Mage::getVersion(), '1.4', '>=')) {
+            $this->addColumn(
+                'carrier', array(
+                    'header' => Mage::helper('sales')->__('Carrier'),
+                    'index' => 'carrier_code',
+                    'filter_index' => 'orders.shipping_method',
+                )
+            );
+        } else {
+            $this->addColumn(
+                'carrier', array(
+                    'header' => Mage::helper('sales')->__('Carrier'),
+                    'index' => 'shipping_method',
+                )
+            );
+        }
 
         $columnData = array(
             'header' => Mage::helper('sales')->__('Status'),
