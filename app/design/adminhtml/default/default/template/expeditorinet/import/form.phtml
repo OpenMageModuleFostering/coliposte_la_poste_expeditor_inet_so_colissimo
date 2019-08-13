@@ -1,7 +1,7 @@
-<!-- 
+<!--
 /**
  * LaPoste_ExpeditorINet
- * 
+ *
  * @category    LaPoste
  * @package     LaPoste_ExpeditorINet
  * @copyright   Copyright (c) 2010 La Poste
@@ -58,14 +58,13 @@
                 </tbody>
             </table>
             </fieldset>
-
         </form>
         <script type="text/javascript">
             var importForm = new varienForm('import_form');
 
             function displayLoadingMask()
             {
-                var loaderArea = $$('#html-body .wrapper')[0]; // Blocks all page
+                var loaderArea = $$('#html-body .wrapper')[0]; // blocks all pages
                 Position.clone($(loaderArea), $('loading-mask'), {offsetLeft:-2});
                 toggleSelectsUnderBlock($('loading-mask'), false);
                 Element.show('loading-mask');

@@ -1,7 +1,7 @@
 <?php
 /**
  * LaPoste_ExpeditorINet
- * 
+ *
  * @category    LaPoste
  * @package     LaPoste_ExpeditorINet
  * @copyright   Copyright (c) 2010 La Poste
@@ -10,7 +10,11 @@
  */
 class LaPoste_ExpeditorINet_Block_Export_Orders extends Mage_Adminhtml_Block_Widget_Grid_Container
 {
-
+    /**
+     * Constructor
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->_blockGroup = 'expeditorinet';
@@ -19,5 +23,4 @@ class LaPoste_ExpeditorINet_Block_Export_Orders extends Mage_Adminhtml_Block_Wid
         parent::__construct();
         $this->_removeButton('add');
     }
-
 }

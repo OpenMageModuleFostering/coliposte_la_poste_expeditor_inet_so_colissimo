@@ -1,7 +1,7 @@
 <?php
 /**
  * LaPoste_ExpeditorINet
- * 
+ *
  * @category    LaPoste
  * @package     LaPoste_ExpeditorINet
  * @copyright   Copyright (c) 2010 La Poste
@@ -10,11 +10,16 @@
  */
 class LaPoste_ExpeditorINet_Model_Config_Source_FileCharset
 {
+    /**
+     * Get available options for file charsets
+     *
+     * @return array
+     */
     public function toOptionArray()
     {
         return array(
-            array('value'=>'ISO-8859-1', 'label'=>Mage::helper('expeditorinet')->__('ISO-8859-1')),
-            array('value'=>'UTF-8', 'label'=>Mage::helper('expeditorinet')->__('UTF-8'))
+            array('value' => 'ISO-8859-1', 'label' => Mage::helper('expeditorinet')->__('ISO-8859-1')),
+            array('value' => 'UTF-8', 'label' => Mage::helper('expeditorinet')->__('UTF-8')),
         );
     }
 }

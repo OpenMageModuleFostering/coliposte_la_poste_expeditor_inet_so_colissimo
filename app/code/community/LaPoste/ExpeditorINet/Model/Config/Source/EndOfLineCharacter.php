@@ -1,7 +1,7 @@
 <?php
 /**
  * LaPoste_ExpeditorINet
- * 
+ *
  * @category    LaPoste
  * @package     LaPoste_ExpeditorINet
  * @copyright   Copyright (c) 2010 La Poste
@@ -10,12 +10,17 @@
  */
 class LaPoste_ExpeditorINet_Model_Config_Source_EndOfLineCharacter
 {
+    /**
+     * Get available options for end of line characters
+     *
+     * @return array
+     */
     public function toOptionArray()
     {
         return array(
-            array('value'=>'lf', 'label'=>Mage::helper('expeditorinet')->__('LF')),
-            array('value'=>'cr', 'label'=>Mage::helper('expeditorinet')->__('CR')),
-            array('value'=>'crlf', 'label'=>Mage::helper('expeditorinet')->__('CR+LF'))
+            array('value' => 'lf', 'label' => Mage::helper('expeditorinet')->__('LF')),
+            array('value' => 'cr', 'label' => Mage::helper('expeditorinet')->__('CR')),
+            array('value' => 'crlf', 'label' => Mage::helper('expeditorinet')->__('CR+LF')),
         );
     }
 }

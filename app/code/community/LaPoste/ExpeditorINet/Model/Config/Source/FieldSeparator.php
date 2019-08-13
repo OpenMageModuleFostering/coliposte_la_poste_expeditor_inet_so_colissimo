@@ -1,7 +1,7 @@
 <?php
 /**
  * LaPoste_ExpeditorINet
- * 
+ *
  * @category    LaPoste
  * @package     LaPoste_ExpeditorINet
  * @copyright   Copyright (c) 2010 La Poste
@@ -10,11 +10,16 @@
  */
 class LaPoste_ExpeditorINet_Model_Config_Source_FieldSeparator
 {
+    /**
+     * Get available options for field separators
+     *
+     * @return array
+     */
     public function toOptionArray()
     {
         return array(
-            array('value'=>';', 'label'=>Mage::helper('expeditorinet')->__(';')),
-            array('value'=>',', 'label'=>Mage::helper('expeditorinet')->__(','))
+            array('value' => ';', 'label' => Mage::helper('expeditorinet')->__(';')),
+            array('value' => ',', 'label' => Mage::helper('expeditorinet')->__(',')),
         );
     }
 }

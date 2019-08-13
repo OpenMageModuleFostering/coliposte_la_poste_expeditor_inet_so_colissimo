@@ -6,22 +6,20 @@
  * @category    LaPoste
  * @package     LaPoste_ExpeditorINet
  * @copyright   Copyright (c) 2010 La Poste
- * @author 	    Smile (http://www.smile.fr) & Jibé
+ * @author         Smile (http://www.smile.fr) & Jibé
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 -->
 <config>
-
     <modules>
         <LaPoste_ExpeditorINet>
-            <version>1.0.1</version>
-			<depends>
-				<Mage_Sales />
-				<Mage_Adminhtml />
-			</depends>
+            <version>1.0.3</version>
+            <depends>
+                <Mage_Sales />
+                <Mage_Adminhtml />
+            </depends>
         </LaPoste_ExpeditorINet>
     </modules>
-
     <global>
         <models>
             <expeditorinet>
@@ -39,7 +37,6 @@
             </expeditorinet>
         </helpers>
     </global>
-
     <admin>
         <routers>
             <expeditorinet>
@@ -51,9 +48,7 @@
             </expeditorinet>
         </routers>
     </admin>
-
     <adminhtml>
-
         <menu>
              <sales>
                  <children>
@@ -76,7 +71,6 @@
                 </children>
              </sales>
         </menu>
-
         <acl>
             <resources>
                 <admin>
@@ -113,7 +107,6 @@
                 </admin>
             </resources>
         </acl>
-
         <translate>
             <modules>
                 <expeditorinet>
@@ -123,9 +116,7 @@
                 </expeditorinet>
             </modules>
         </translate>
-
     </adminhtml>
-    
     <default>
         <expeditorinet>
             <export>
@@ -142,7 +133,16 @@
                 <include_comment>0</include_comment>
                 <carrier_code>socolissimosimplicite_socolissimosimplicite</carrier_code>
             </import>
+            <pickup_point_codes>
+                <A2P />
+                <ACP />
+                <BDP />
+                <BPR />
+                <CDI />
+                <CIT />
+                <CMT />
+                <MRL />
+            </pickup_point_codes>
         </expeditorinet>
     </default>
-
 </config>

@@ -10,9 +10,10 @@
  */
 class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Block_Widget_Grid
 {
-
     /**
      * Constructor
+     *
+     * @return void
      */
     public function __construct()
     {
@@ -25,6 +26,7 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
 
     /**
      * Prepare order collection (for different Magento versions)
+     *
      * @return LaPoste_ExpeditorINet_Block_Export_Orders_Grid
      */
     protected function _prepareCollection()
@@ -32,7 +34,6 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
         if (version_compare(Mage::getVersion(), '1.4', '>=')) {
             $collection = Mage::getResourceModel('sales/order_grid_collection')
                  ->join('order', 'main_table.entity_id = order.entity_id', array('shipping_method'));
-
         } else {
             $collection = Mage::getResourceModel('sales/order_collection')
                 ->addAttributeToSelect(array('status', 'shipping_method'))
@@ -58,11 +59,11 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
 
     /**
      * Prepare grid columns (for different Magento versions)
+     *
      * @return LaPoste_ExpeditorINet_Block_Export_Orders_Grid
      */
     protected function _prepareColumns()
     {
-
         $columnData = array(
             'header'=> Mage::helper('sales')->__('Order #'),
             'width' => '80px',
@@ -70,22 +71,21 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
             'index' => 'increment_id',
         );
         if (version_compare(Mage::getVersion(), '1.4', '>=')) {
-            $columnData['filter_index'] = 'main_table.'.$columnData['index'];
+            $columnData['filter_index'] = 'main_table.' . $columnData['index'];
         }
         $this->addColumn('real_order_id', $columnData);
 
         if (!Mage::app()->isSingleStoreMode()) {
             $columnData = array(
-                    'header'    => Mage::helper('sales')->__('Purchased from (store)'),
-                    'index'     => 'store_id',
-                    'type'      => 'store',
-                    'store_view'=> true,
-                    'display_deleted' => true,
+                'header'    => Mage::helper('sales')->__('Purchased from (store)'),
+                'index'     => 'store_id',
+                'type'      => 'store',
+                'store_view'=> true,
+                'display_deleted' => true,
             );
             if (version_compare(Mage::getVersion(), '1.4', '>=')) {
-                $columnData['filter_index'] = 'main_table.'.$columnData['index'];
+                $columnData['filter_index'] = 'main_table.' . $columnData['index'];
             }
-
             $this->addColumn('store_id', $columnData);
         }
 
@@ -96,7 +96,7 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
             'width' => '100px',
         );
         if (version_compare(Mage::getVersion(), '1.4', '>=')) {
-            $columnData['filter_index'] = 'main_table.'.$columnData['index'];
+            $columnData['filter_index'] = 'main_table.' . $columnData['index'];
         }
         $this->addColumn('created_at', $columnData);
 
@@ -118,7 +118,7 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
             'header'   => Mage::helper('sales')->__('G.T. (Base)'),
             'index'    => 'base_grand_total',
             'type'     => 'currency',
-            'currency' => 'base_currency_code'
+            'currency' => 'base_currency_code',
         );
         if (version_compare(Mage::getVersion(), '1.4', '>=')) {
             $columnData['filter_index'] = 'main_table.'.$columnData['index'];
@@ -155,8 +155,8 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
                         array(
                             'caption' => Mage::helper('sales')->__('View'),
                             'url'     => array('base'=>'adminhtml/sales_order/view'),
-                            'field'   => 'order_id'
-                        )
+                            'field'   => 'order_id',
+                        ),
                     ),
                     'filter'    => false,
                     'sortable'  => false,
@@ -171,6 +171,7 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
 
     /**
      * Prepare mass action (for different Magento versions)
+     *
      * @return LaPoste_ExpeditorINet_Block_Export_Orders_Grid
      */
     protected function _prepareMassaction()
@@ -193,23 +194,23 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
 
     /**
      * Get url called when user click on a grid row
-     * @return string|boolean
+     *
+     * @return string|bool
      */
     public function getRowUrl($row)
     {
-        if (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/view')) {
-            return $this->getUrl('adminhtml/sales_order/view', array('order_id' => $row->getId()));
-        }
-        return false;
+        return (Mage::getSingleton('admin/session')->isAllowed('sales/order/actions/view'))
+            ? $this->getUrl('adminhtml/sales_order/view', array('order_id' => $row->getId()))
+            : false;
     }
 
     /**
      * Get grid url
+     *
      * @return string
      */
     public function getGridUrl()
     {
         return $this->getUrl('*/*/*', array('_current'=>true));
     }
-
 }

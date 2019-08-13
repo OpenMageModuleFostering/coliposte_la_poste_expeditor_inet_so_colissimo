@@ -1,7 +1,7 @@
 <?php
 /**
  * LaPoste_ExpeditorINet
- * 
+ *
  * @category    LaPoste
  * @package     LaPoste_ExpeditorINet
  * @copyright   Copyright (c) 2010 La Poste
@@ -10,17 +10,20 @@
  */
 class LaPoste_ExpeditorINet_ImportController extends Mage_Adminhtml_Controller_Action
 {
-
     /**
      * Constructor
+     *
+     * @return void
      */
     protected function _construct()
-    {        
+    {
         $this->setUsedModuleName('LaPoste_ExpeditorINet');
     }
 
     /**
      * Main action : show import form
+     *
+     * @return void
      */
     public function indexAction()
     {
@@ -32,6 +35,8 @@ class LaPoste_ExpeditorINet_ImportController extends Mage_Adminhtml_Controller_A
 
     /**
      * Import Action
+     *
+     * @return void
      */
     public function importAction()
     {
@@ -39,16 +44,13 @@ class LaPoste_ExpeditorINet_ImportController extends Mage_Adminhtml_Controller_A
             try {
                 $trackingTitle = $_POST['import_expeditor_inet_tracking_title'];
                 $this->_importExpeditorInetFile($_FILES['import_expeditor_inet_file']['tmp_name'], $trackingTitle);
-            }
-            catch (Mage_Core_Exception $e) {
+            } catch (Mage_Core_Exception $e) {
                 $this->_getSession()->addError($e->getMessage());
-            }
-            catch (Exception $e) {
+            } catch (Exception $e) {
                 $this->_getSession()->addError($e->getMessage());
                 $this->_getSession()->addError($this->__('Invalid file upload attempt'));
             }
-        }
-        else {
+        } else {
             $this->_getSession()->addError($this->__('Invalid file upload attempt'));
         }
         $this->_redirect('*/*/index');
@@ -56,86 +58,60 @@ class LaPoste_ExpeditorINet_ImportController extends Mage_Adminhtml_Controller_A
 
     /**
      * Importation logic
+     *
      * @param string $fileName
      * @param string $trackingTitle
+     * @return void
      */
     protected function _importExpeditorInetFile($fileName, $trackingTitle)
     {
-        /**
-         * File handling
-         **/
+        // file handling
         ini_set('auto_detect_line_endings', true);
         $csvObject = new Varien_File_Csv();
         $csvData = $csvObject->getData($fileName);
 
-        /**
-         * File expected fields
-         */
+        // file expected fields
         $expectedCsvFields  = array(
             0   => $this->__('Order Id'),
-            1   => $this->__('Tracking Number')
+            1   => $this->__('Tracking Number'),
         );
 
-        /**
-         * Get configuration
-         */
+        // get configuration
         $sendEmail = Mage::helper('expeditorinet')->getConfigurationSendEmail();
         $comment = Mage::helper('expeditorinet')->getConfigurationShippingComment();
         $includeComment = Mage::helper('expeditorinet')->getConfigurationIncludeComment();
 
-        /* debug */
-        //$this->_getSession()->addSuccess($this->__('%s - %s - %s - %s', $sendEmail, $comment, $includeComment, $trackingTitle));
-
-        /**
-         * $k is line number
-         * $v is line content array
-         */
+        // $k is line number, $v is line content array
         foreach ($csvData as $k => $v) {
-
-            /**
-             * End of file has more than one empty lines
-             */
+            // end of file has more than one empty lines
             if (count($v) <= 1 && !strlen($v[0])) {
                 continue;
             }
 
-            /**
-             * Check that the number of fields is not lower than expected
-             */
+            // check that the number of fields is not lower than expected
             if (count($v) < count($expectedCsvFields)) {
                 $this->_getSession()->addError($this->__('Line %s format is invalid and has been ignored', $k));
                 continue;
             }
 
-            /**
-             * Get fields content
-             */
+            // get fields content
             $orderId = $v[0];
             $trackingNumber = $v[1];
 
-            /* for debug */
-            //$this->_getSession()->addSuccess($this->__('Lecture ligne %s: %s - %s', $k, $orderId, $trackingNumber));
-
-            /**
-             * Try to load the order
-             */
+            // try to load the order
             $order = Mage::getModel('sales/order')->loadByIncrementId($orderId);
             if (!$order->getId()) {
                 $this->_getSession()->addError($this->__('Order %s does not exist', $orderId));
                 continue;
             }
 
-            /**
-             * Try to create a shipment
-             */
+            // try to create a shipment
             $shipmentId = $this->_createShipment($order, $trackingNumber, $trackingTitle, $sendEmail, $comment, $includeComment);
-            
+
             if ($shipmentId != 0) {
                 $this->_getSession()->addSuccess($this->__('Shipment %s created for order %s, with tracking number %s', $shipmentId, $orderId, $trackingNumber));
             }
-             
-        }//foreach
-
+        }
     }
 
     /**
@@ -152,27 +128,22 @@ class LaPoste_ExpeditorINet_ImportController extends Mage_Adminhtml_Controller_A
      */
     public function _createShipment($order, $trackingNumber, $trackingTitle, $email, $comment, $includeComment)
     {
-        /**
-         * Check shipment creation availability
-         */
+        // check shipment creation availability
         if (!$order->canShip()) {
             $this->_getSession()->addError($this->__('Order %s can not be shipped or has already been shipped', $order->getRealOrderId()));
             return 0;
         }
 
-        /**
-         * Initialize the Mage_Sales_Model_Order_Shipment object
-         */
+        // initialize the Mage_Sales_Model_Order_Shipment object
         $convertor = Mage::getModel('sales/convert_order');
         $shipment = $convertor->toShipment($order);
 
-        /**
-         * Add the items to send
-         */
+        // add the items to send
         foreach ($order->getAllItems() as $orderItem) {
             if (!$orderItem->getQtyToShip()) {
                 continue;
             }
+
             if ($orderItem->getIsVirtual()) {
                 continue;
             }
@@ -181,60 +152,47 @@ class LaPoste_ExpeditorINet_ImportController extends Mage_Adminhtml_Controller_A
             $qty = $orderItem->getQtyToShip();
             $item->setQty($qty);
 
-        	$shipment->addItem($item);
-        }//foreach
+            $shipment->addItem($item);
+        }
 
         $shipment->register();
 
-        /**
-         * Tracking number instanciation
-         */
-		$carrierCode = Mage::helper('expeditorinet')->getConfigurationCarrierCode();
-		if(!$carrierCode) $carrierCode = 'custom';
-		        
+        // tracking number instanciation
+        $carrierCode = Mage::helper('expeditorinet')->getConfigurationCarrierCode();
+        if (!$carrierCode) {
+            $carrierCode = 'custom';
+        }
+
         $track = Mage::getModel('sales/order_shipment_track')
-                	->setNumber($trackingNumber)
-                    ->setCarrierCode($carrierCode)
-                    ->setTitle($trackingTitle);
+            ->setNumber($trackingNumber)
+            ->setCarrierCode($carrierCode)
+            ->setTitle($trackingTitle);
         $shipment->addTrack($track);
 
-        /**
-         * Comment handling
-         */
+        // comment handling
         $shipment->addComment($comment, $email && $includeComment);
 
-        /**
-         * Change order status to Processing
-         */
+        // change order status to Processing
         $shipment->getOrder()->setIsInProcess(true);
 
-        /**
-         * If e-mail, set as sent (must be done before shipment object saving)
-         */
+        // if e-mail, set as sent (must be done before shipment object saving)
         if ($email) {
             $shipment->setEmailSent(true);
         }
 
         try {
-        	/**
-             * Save the created shipment and the updated order
-             */
+            // save the created shipment and the updated order
             $shipment->save();
             $shipment->getOrder()->save();
 
-            /**
-             * Email sending
-             */
+            // email sending
             $shipment->sendEmail($email, ($includeComment ? $comment : ''));
         } catch (Mage_Core_Exception $e) {
             $this->_getSession()->addError($this->__('Shipment creation error for Order %s : %s', $orderId, $e->getMessage()));
             return 0;
         }
 
-        /**
-         * Everything was ok : return Shipment real id
-         */
+        // everything was ok : return Shipment real id
         return $shipment->getIncrementId();
     }
-
 }

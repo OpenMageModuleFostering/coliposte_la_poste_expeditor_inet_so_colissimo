@@ -6,7 +6,7 @@
  * @category    LaPoste
  * @package     LaPoste_ExpeditorINet
  * @copyright   Copyright (c) 2010 La Poste
- * @author 	    Smile (http://www.smile.fr) & Jibé
+ * @author      Smile (http://www.smile.fr) & Jibé
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 -->
@@ -139,7 +139,7 @@
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <comment>By default, the tracking number will be associated to the "custom" code. If you want to associate it with your carrier code, put it here.</comment>
-                        </carrier_code>                        
+                        </carrier_code>
                     </fields>
                 </import>
             </groups>

@@ -1,7 +1,7 @@
 <?php
 /**
  * LaPoste_ExpeditorINet
- * 
+ *
  * @category    LaPoste
  * @package     LaPoste_ExpeditorINet
  * @copyright   Copyright (c) 2010 La Poste
@@ -10,11 +10,16 @@
  */
 class LaPoste_ExpeditorINet_Model_Config_Source_FileExtension
 {
+    /**
+     * Get available options for file extensions
+     *
+     * @return array
+     */
     public function toOptionArray()
     {
         return array(
-            array('value'=>'.txt', 'label'=>Mage::helper('expeditorinet')->__('.txt')),
-            array('value'=>'.csv', 'label'=>Mage::helper('expeditorinet')->__('.csv'))
+            array('value' => '.txt', 'label' => Mage::helper('expeditorinet')->__('.txt')),
+            array('value' => '.csv', 'label' => Mage::helper('expeditorinet')->__('.csv')),
         );
     }
 }
