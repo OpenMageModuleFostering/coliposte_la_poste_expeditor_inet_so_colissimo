@@ -21,6 +21,16 @@ class LaPoste_ExpeditorINet_ImportController extends Mage_Adminhtml_Controller_A
     }
 
     /**
+     * Check whether the admin user has access to this controller.
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('sales/expeditorinet/import');
+    }
+
+    /**
      * Main action : show import form
      *
      * @return void

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
     <name>ColiPoste_La_Poste_Expeditor_Inet_So_Colissimo</name>
-    <version>1.0.6</version>
+    <version>1.0.7</version>
     <stability>stable</stability>
     <license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL v3.0</license>
     <channel>community</channel>
@@ -13,15 +13,14 @@ Ce module est compatible avec les commandes utilisant le mode de livraison So Co
 &#xD;
 Test&#xE9; et valid&#xE9; sur Magento :&#xD;
 - Community : 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9&#xD;
-- Professional : 1.8&#xD;
 - Enterprise : 1.8, 1.9, 1.10, 1.11, 1.12, 1.13, 1.14&#xD;
 &#xD;
 R&#xE9;alis&#xE9; par Smile sur la base du module cr&#xE9;&#xE9; par Jib&#xE9;.</description>
-    <notes>Correction d'une r&#xE9;gression introduite sur la v1.0.5 avec les versions 1.4 et 1.5 de Magento</notes>
+    <notes>Ajout de la m&#xE9;thode _isAllowed dans les controllers du module afin de permettre aux utilisateurs &#xE0; acc&#xE8;s restreint d'utiliser le module s'ils ont les permissions n&#xE9;c&#xE9;ssaires</notes>
     <authors><author><name>Berlioz</name><user>Aline</user><email>Aline.BERLIOZ@laposte.fr</email></author></authors>
-    <date>2015-04-30</date>
-    <time>13:26:39</time>
-    <contents><target name="mageetc"><dir name="modules"><file name="LaPoste_ExpeditorINet.xml" hash="f2198321021ba493d81d064eb99e6aec"/></dir></target><target name="magecommunity"><dir name="LaPoste"><dir name="ExpeditorINet"><dir name="Block"><dir name="Export"><dir name="Orders"><file name="Grid.php" hash="768bc842442e022eb3b39706d0606279"/></dir><file name="Orders.php" hash="eddae8e734c4b12a36343ef330cdcb32"/></dir><dir name="Import"><file name="Form.php" hash="375c120395760e50ce8eb6e6edf2cdca"/></dir></dir><dir name="Helper"><file name="Data.php" hash="026ea878ecf24e84711b27ad8b10edaf"/></dir><dir name="Model"><dir name="Config"><dir name="Source"><file name="EndOfLineCharacter.php" hash="b8c600ab0371995b790bbb9f9ce43185"/><file name="FieldDelimiter.php" hash="d82eacb4771e2db3168bc360dbd9586b"/><file name="FieldSeparator.php" hash="30c60175102f0c138798d6ce095e1439"/><file name="FileCharset.php" hash="67ae7384d6c71a535e1d93fd683a4d80"/><file name="FileExtension.php" hash="b5d4b7b193e63270f30c5624ff7e9921"/></dir></dir></dir><dir name="controllers"><file name="ExportController.php" hash="7a1dab0be2737b026bf566a6540899a0"/><file name="ImportController.php" hash="81ed1330737f49c111478411f5287b2c"/></dir><dir name="etc"><file name="config.xml" hash="630257ba9d3482ff92e188a2f55df234"/><file name="system.xml" hash="62af9a91e02ae96358dbee7422f1d165"/></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="template"><dir name="expeditorinet"><dir name="import"><file name="form.phtml" hash="0afef5bb21747ce26466f7367b3f6d19"/></dir></dir></dir></dir></dir></dir></target><target name="magelocale"><dir><dir name="fr_FR"><file name="LaPoste_ExpeditorINet.csv" hash="b519614a28683786e3d60293bdc551f6"/></dir></dir></target></contents>
+    <date>2015-07-20</date>
+    <time>07:47:19</time>
+    <contents><target name="mageetc"><dir name="modules"><file name="LaPoste_ExpeditorINet.xml" hash="f2198321021ba493d81d064eb99e6aec"/></dir></target><target name="magecommunity"><dir name="LaPoste"><dir name="ExpeditorINet"><dir name="Block"><dir name="Export"><dir name="Orders"><file name="Grid.php" hash="768bc842442e022eb3b39706d0606279"/></dir><file name="Orders.php" hash="eddae8e734c4b12a36343ef330cdcb32"/></dir><dir name="Import"><file name="Form.php" hash="375c120395760e50ce8eb6e6edf2cdca"/></dir></dir><dir name="Helper"><file name="Data.php" hash="026ea878ecf24e84711b27ad8b10edaf"/></dir><dir name="Model"><dir name="Config"><dir name="Source"><file name="EndOfLineCharacter.php" hash="b8c600ab0371995b790bbb9f9ce43185"/><file name="FieldDelimiter.php" hash="d82eacb4771e2db3168bc360dbd9586b"/><file name="FieldSeparator.php" hash="30c60175102f0c138798d6ce095e1439"/><file name="FileCharset.php" hash="67ae7384d6c71a535e1d93fd683a4d80"/><file name="FileExtension.php" hash="b5d4b7b193e63270f30c5624ff7e9921"/></dir></dir></dir><dir name="controllers"><file name="ExportController.php" hash="f8dc785c98d13affc034cf786f135024"/><file name="ImportController.php" hash="15793cd2633cf6de8ab33a87a5e170c4"/></dir><dir name="etc"><file name="adminhtml.xml" hash="6e5e8d4fec8dc97e6900af8084c4a0b5"/><file name="config.xml" hash="ba34cb70d6da1ec33e0de80a58a8ee07"/><file name="system.xml" hash="7c7a4a4c1e4e5db4ac1d020de0d16bca"/></dir></dir></dir></target><target name="magedesign"><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="template"><dir name="expeditorinet"><dir name="import"><file name="form.phtml" hash="0afef5bb21747ce26466f7367b3f6d19"/></dir></dir></dir></dir></dir></dir></target><target name="magelocale"><dir><dir name="fr_FR"><file name="LaPoste_ExpeditorINet.csv" hash="b519614a28683786e3d60293bdc551f6"/></dir></dir></target></contents>
     <compatible/>
     <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
 </package>

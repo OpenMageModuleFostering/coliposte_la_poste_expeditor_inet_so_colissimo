@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * LaPoste_ExpeditorINet
+ * 
+ * @category    LaPoste
+ * @package     LaPoste_ExpeditorINet
+ * @copyright   Copyright (c) 2010 La Poste
+ * @author         Smile (http://www.smile.fr) & Jibé
+ * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+-->
+<config>
+    <menu>
+         <sales>
+             <children>
+                <expeditorinet translate="title"> <!-- TODO faire marcher : module="expeditor_inet" (aussi dans les children) -->
+                    <title>La Poste Expeditor INet</title>
+                    <sort_order>15</sort_order>
+                    <children>
+                        <export translate="title">
+                            <title>Export orders</title>
+                            <action>expeditorinet/export</action>
+                            <sort_order>10</sort_order>
+                        </export>
+                        <import translate="title">
+                            <title>Import shipping</title>
+                            <action>expeditorinet/import</action>
+                            <sort_order>20</sort_order>
+                        </import>
+                    </children>
+                </expeditorinet>
+            </children>
+         </sales>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <expeditorinet translate="title">
+                                <title>La Poste Expeditor INet</title>
+                                <children>
+                                    <export translate="title">
+                                        <title>Export orders</title>
+                                    </export>
+                                    <import translate="title">
+                                        <title>Import shipping</title>
+                                    </import>
+                                </children>
+                                <sort_order>15</sort_order>
+                            </expeditorinet>
+                        </children>
+                    </sales>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <expeditorinet>
+                                        <title>La Poste Expeditor INet</title>
+                                        <sort_order>100</sort_order>
+                                    </expeditorinet>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+</config>
