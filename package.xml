@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+    <name>ColiPoste_La_Poste_Expeditor_Inet_So_Colissimo</name>
+    <version>1.0.2</version>
+    <stability>stable</stability>
+    <license uri="http://www.opensource.org/licenses/osl-3.0.php">OSL v3.0</license>
+    <channel>community</channel>
+    <extends/>
+    <summary>Extension officielle permettant d'exporter les commandes So Colissimo (et autres) dans le logiciel Expeditor INET de La Poste / ColisPoste</summary>
+    <description>Cette extension officielle permet d'exporter les commandes dans le logiciel Expeditor INET de La Poste / ColiPoste.&#xD;
+&#xD;
+Ce module est compatible avec les commandes utilisant le mode de livraison So Colissimo.&#xD;
+&#xD;
+Test&#xE9; et valid&#xE9; sur Magento :&#xD;
+- Community : 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9&#xD;
+- Professional : 1.8&#xD;
+- Enterprise : 1.8, 1.9, 1.10, 1.11, 1.12, 1.13, 1.14&#xD;
+&#xD;
+R&#xE9;alis&#xE9; par Smile sur la base du module cr&#xE9;&#xE9; par Jib&#xE9;.</description>
+    <notes>Ajout du champ code r&#xE9;seau point de retrait</notes>
+    <authors><author><name>Berlioz</name><user>Aline</user><email>Aline.BERLIOZ@laposte.fr</email></author></authors>
+    <date>2014-06-19</date>
+    <time>15:05:27</time>
+    <contents><target name="magedesign"><dir><dir name="adminhtml"><dir name="default"><dir name="default"><dir name="template"><dir name="expeditorinet"><dir name="import"><file name="form.phtml" hash="1413b5588abae748f040c73e655f3932"/></dir></dir></dir></dir></dir></dir></dir></target><target name="magelocale"><dir><dir name="fr_FR"><file name="LaPoste_ExpeditorINet.csv" hash="b59e1a3a7f65747aea2386606e7a89e8"/></dir></dir></target><target name="magecommunity"><dir><dir name="LaPoste"><dir name="ExpeditorINet"><dir name="Block"><dir name="Export"><dir name="Orders"><file name="Grid.php" hash="f1f401650b4beebf8b378dfdc92f7b78"/></dir><file name="Orders.php" hash="9b53cb8c1bb73ca5c3091fbf1f3c070b"/></dir><dir name="Import"><file name="Form.php" hash="8efe032ad2523ce95d00fd2436528002"/></dir></dir><dir name="Helper"><file name="Data.php" hash="d3d3efa2b60302d4eb719c60cb6cb39b"/></dir><dir name="Model"><dir name="Config"><dir name="Source"><file name="EndOfLineCharacter.php" hash="6cf85adc9a0e733d0ebd6e46c35b436d"/><file name="FieldDelimiter.php" hash="7c5702eff84345a5aeb1691033031602"/><file name="FieldSeparator.php" hash="1f7b189cd8e390044ff044a12abe2484"/><file name="FileCharset.php" hash="2a562111c2c7d9e8e3f8ad7094bcff8c"/><file name="FileExtension.php" hash="1702d1540a90608f52c0421476b3cc2c"/></dir></dir></dir><dir name="controllers"><file name="ExportController.php" hash="514c1f165effe2954e9538da23e381f1"/><file name="ImportController.php" hash="c2e94c15c78dcb7ea07eee005cdd2927"/></dir><dir name="etc"><file name="config.xml" hash="20f1935333b25648b7b9c6d7799a804a"/><file name="system.xml" hash="a1465132f56c4a574887fc776cbd7342"/></dir></dir></dir></dir></target><target name="mageetc"><dir><dir name="modules"><file name="LaPoste_ExpeditorINet.xml" hash="2a7c93ada6b605d49fb6c047d0feb72e"/></dir></dir></target></contents>
+    <compatible/>
+    <dependencies><required><php><min>5.1.0</min><max>6.0.0</max></php></required></dependencies>
+</package>
