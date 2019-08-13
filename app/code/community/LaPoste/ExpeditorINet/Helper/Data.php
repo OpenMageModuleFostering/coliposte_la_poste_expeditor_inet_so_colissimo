@@ -61,6 +61,16 @@ class LaPoste_ExpeditorINet_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     /**
+     * Get whether a signature is required for home delivery
+     *
+     * @return bool
+     */
+    public function getConfigurationSignatureRequired()
+    {
+        return (bool) Mage::getStoreConfig('expeditorinet/export/signature_required');
+    }
+
+    /**
      * Get export company name
      *
      * @return string

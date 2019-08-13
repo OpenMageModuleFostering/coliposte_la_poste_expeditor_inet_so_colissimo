@@ -148,7 +148,7 @@ class LaPoste_ExpeditorINet_ExportController extends Mage_Adminhtml_Controller_A
                 $content = $this->_addFieldToCsv($content, $delimiter, $telephone);
                 $content .= $separator;
                 // product code
-                $content = $this->_addFieldToCsv($content, $delimiter, $order->getSocoProductCode());
+                $content = $this->_addFieldToCsv($content, $delimiter, $this->_getProductCode($order));
                 $content .= $separator;
                 // shipping instruction
                 $content = $this->_addFieldToCsv($content, $delimiter, $order->getSocoShippingInstruction());
@@ -224,5 +224,23 @@ class LaPoste_ExpeditorINet_ExportController extends Mage_Adminhtml_Controller_A
     protected function _addFieldToCsv($csvContent, $fieldDelimiter, $fieldContent)
     {
         return $csvContent . $fieldDelimiter . $fieldContent . $fieldDelimiter;
+    }
+
+    /**
+     * Get the So Colissimo product code stored in the order data.
+     *
+     * @param Mage_Sales_Model_Order $order the order
+     * @return string
+     */
+    protected function _getProductCode($order)
+    {
+        $value = $order->getSocoProductCode();
+
+        // request a signature for home delivery
+        if ($value === 'DOM' && Mage::helper('expeditorinet')->getConfigurationSignatureRequired()) {
+            $value = 'DOS';
+        }
+
+        return $value;
     }
 }

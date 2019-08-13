@@ -36,5 +36,7 @@
 "Import shipping","Importer les expéditions"
 "Carrier code","Code du transporteur"
 "By default, the tracking number will be associated to the ""custom"" code. If you want to associate it with your carrier code, put it here.","Par défaut, le numéro de suivi est associé avec le code ""custom"". Indiquer ici le code du transporteur auquel on souhaite l'associer."
+"Signature On Delivery","Remise contre signature"
+"Whether a signature is required for home delivery","Exiger une remise contre signature pour les envois de colis à domicile"
 "Company commercial name","Nom commercial de la société"
 "This value is used as commercial name of company for Expeditor Inet","Utilisé comme nom commercial de la société sur les étiquettes de livraison"
