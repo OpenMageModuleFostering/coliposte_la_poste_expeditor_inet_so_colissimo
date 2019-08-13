@@ -32,9 +32,10 @@ class LaPoste_ExpeditorINet_Block_Export_Orders_Grid extends Mage_Adminhtml_Bloc
     protected function _prepareCollection()
     {
         if (version_compare(Mage::getVersion(), '1.4', '>=')) {
-            $collection = Mage::getResourceModel('sales/order_grid_collection')
+            $collection = Mage::getResourceModel('sales/order_grid_collection');
+            $collection->getSelect()
                 ->join(
-                    array('orders' => 'order'),
+                    array('orders' => Mage::getSingleton('core/resource')->getTableName('sales/order')),
                     'main_table.entity_id = orders.entity_id',
                     array('carrier_code' => 'shipping_method')
                 );
