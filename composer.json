@@ -1,16 +1,19 @@
 {
-    "name": "OpenMageModuleFostering/ColiPoste_La_Poste_Expeditor_Inet_So_Colissimo",
+    "name": "OpenMageModuleFostering\/ColiPoste_La_Poste_Expeditor_Inet_So_Colissimo",
     "type": "magento-module",
     "license": "OSL-v3.0",
     "homepage": "",
-    "description": "Extension officielle permettant d'exporter les commandes So Colissimo (et autres) dans le logiciel Expeditor INET de La Poste / ColisPoste",
+    "description": "Extension officielle permettant d'exporter les commandes So Colissimo (et autres) dans le logiciel Expeditor INET de La Poste \/ ColisPoste",
     "authors": [
-    {
-        "name": "Berlioz",
-        "email": "Aline.BERLIOZ@laposte.fr"
-    }
-],
+        {
+            "name": "Berlioz",
+            "email": "Aline.BERLIOZ@laposte.fr"
+        }
+    ],
     "suggest": {
-        "magento-hackathon/magento-composer-installer": "*"
-    }
+        "magento-hackathon\/magento-composer-installer": "*"
+    },
+    "keywords": [
+        "openmage-module"
+    ]
 }
